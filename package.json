@@ -1,0 +1,30 @@
+{
+  "name": "stats",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "date-fns": "^2.19.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "govuk-frontend": "^3.11.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "nunjucks": "^3.2.3",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "del": "^6.0.0",
+    "got": "^11.8.2",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
+    "gulp-sass": "^4.1.0",
+    "htmlmin": "0.0.7",
+    "node-sass": "^5.0.0"
+  }
+}

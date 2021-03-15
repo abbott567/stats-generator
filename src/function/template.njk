@@ -1,0 +1,60 @@
+{%- extends '../common/layouts/default.njk' -%}
+{%- from "govuk/components/summary-list/macro.njk" import govukSummaryList -%}
+
+{%- block content -%}
+      
+<h1 class="govuk-heading-xl">{{function.name}}</h1>
+
+<h2 class="govuk-heading-l">Overview</h2>
+<div class="app-inset-text">
+  {{ statsSection({
+    service_name: function.name,
+    heading: 'True compliance',
+    heading_hidden: 'of ' + function.name,
+    heading_level: 3,
+    heading_class: 'govuk-heading-m',
+    stats_type: 'true',
+
+    rate_total: function.stats.rates.true_total,
+    total_live: function.stats.total_live,
+    total_live_compliant: function.stats.total_live_compliant,
+
+    rate_citizen: function.stats.rates.true_citizen,
+    total_live_citizen: function.stats.total_live_citizen,
+    total_live_compliant_citizen: function.stats.total_live_compliant_citizen,
+
+    rate_staff: function.stats.rates.true_staff,
+    total_live_staff: function.stats.total_live_staff,
+    total_live_compliant_staff: function.stats.total_live_compliant_staff,
+
+    total_descoped: function.stats.total_descoped
+  }) }}
+
+  {{ statsSection({
+    service_name: function.name,
+    heading: 'Strategic compliance',
+    heading_hidden: 'of ' + function.name,
+    heading_level: 3,
+    heading_class: 'govuk-heading-m',
+    stats_type: 'strategic',
+
+    rate_total: function.stats.rates.strategic_total,
+    total_live: function.stats.total_live,
+    total_live_compliant: function.stats.total_live_compliant,
+
+    rate_citizen: function.stats.rates.true_citizen,
+    total_live_citizen: function.stats.total_live_citizen,
+    total_live_compliant_citizen: function.stats.total_live_compliant_citizen,
+
+    rate_staff: function.stats.rates.strategic_staff,
+    total_live_staff: function.stats.total_live_staff,
+    total_live_compliant_staff: function.stats.total_live_compliant_staff,
+
+    total_descoped: function.stats.total_descoped
+  }) }}
+</div>
+
+{%- include './partials/live-services.njk' -%}
+{%- include './partials/not-live-services.njk' -%}
+
+{%- endblock -%}

@@ -1,0 +1,18 @@
+<nav class="app-nav">
+  <ul>
+    {%- for parent in nav -%}
+      <li class="app-nav__list-item{{' app-nav__list-item--active' if parent.active}}{{' app-nav__list-item--child-active' if parent.child_active}}">
+        <a class="govuk-link govuk-link--no-visited-state" href="{{parent.link}}">{{parent.name}}</a>
+      </li>
+      {%- if parent.active or parent.child_active -%}
+        <ul>
+          {%- for child in parent.children -%}
+            <li class="app-nav__list-sub-item{{' app-nav__list-sub-item--active' if child.active}}">
+              <a class="govuk-link govuk-link--no-visited-state" href="{{child.link}}">{{child.name}}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    {%- endfor -%}       
+  </ul>
+</nav>

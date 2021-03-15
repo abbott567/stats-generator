@@ -1,0 +1,45 @@
+{%- set bar_colour  -%} 
+  {%- if params.compliance_rate | isNaN -%}
+    grey
+  {%- elif params.compliance_rate >= 90 -%}
+    green
+  {%- elif params.compliance_rate > 50 -%}
+    amber
+  {%- else -%}
+    red
+  {%- endif -%}
+{%- endset -%}
+
+{%- set bar_width  -%}
+  {%- if params.compliance_rate | isNaN  -%}
+    100%
+  {%- else  -%}
+    {{params.compliance_rate}}%
+  {%- endif  -%}
+{%- endset  -%}
+
+{%- set bar_rate -%}
+  {%- if params.compliance_rate | isNaN  -%}
+    N/A
+  {%- else  -%}
+    {{params.compliance_rate}}%
+  {%- endif  -%}
+{%- endset  -%}
+
+<div class="app-progress-bar govuk-!-margin-bottom-3">
+  <h{{params.heading_level}} class="govuk-heading-s govuk-!-margin-bottom-1">
+    {{-params.heading-}}
+    {%- if params.heading_hidden -%}
+      <span class="govuk-visually-hidden"> {{params.heading_hidden}}</span>
+    {%- endif -%}
+  </h{{params.heading_level}}>
+  <div class="app-progress-bar__background">
+    <div class="app-progress-bar__foreground app-progress-bar__foreground--{{-bar_colour-}}" style="width: {{-bar_width-}}"></div>
+  </div>
+  <p class="app-progress-bar__rate">{{bar_rate}}</p>
+  {%- if params.stat_summary -%}
+  <p class="govuk-!-margin-top-1">
+    {{params.stat_summary}}
+  </p>
+  {%- endif -%}
+</div>

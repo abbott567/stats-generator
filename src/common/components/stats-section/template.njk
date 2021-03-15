@@ -1,0 +1,78 @@
+{%- from "../progress-bar/macro.njk" import progressBar -%}
+
+{%- set totalTextTrue -%}
+  {%- if params.rate_total | isNaN -%}
+    No services to make compliant
+  {%- else -%}
+    {{params.total_live_compliant}} of {{params.total_live}} services are compliant
+  {%- endif -%}
+{%- endset -%}
+
+{%- set totalTextStrategic -%}
+  {%- if params.rate_total | isNaN -%}
+    No services to make compliant
+  {%- else -%}
+    {{params.total_live_compliant}} of {{params.total_live - params.total_descoped}} services are compliant
+  {%- endif -%}
+{%- endset -%}
+
+{%- set citizenText -%}
+  {%- if params.rate_citizen | isNaN -%}
+    No citizen facing services to make compliant
+  {%- else -%}
+    {{params.total_live_compliant_citizen}} of {{params.total_live_citizen}} citizen facing services are compliant
+  {%- endif -%}
+{%- endset -%}
+
+{%- set staffTextTrue -%}
+  {%- if params.rate_staff | isNaN -%}
+    No staff facing services to make compliant
+  {%- else -%}
+    {{params.total_live_compliant_staff}} of {{params.total_live_staff}} staff facing services are compliant
+  {%- endif -%}
+{%- endset -%}
+
+{%- set staffTextStrategic -%}
+  {%- if params.rate_staff | isNaN -%}
+    No staff facing services to make compliant
+  {%- else -%}
+    {{params.total_live_compliant_staff}} of {{params.total_live_staff - params.total_descoped}} staff facing services are compliant
+  {%- endif -%}
+{%- endset -%}
+
+<h{{params.heading_level}} class="govuk-heading-m">
+  {{-params.heading-}}
+    {%- if params.heading_hidden -%}
+      <span class="govuk-visually-hidden"> {{params.heading_hidden}}</span>
+    {%- endif -%}
+</h{{params.heading_level}}>
+{%- if params.stats_type === 'strategic' -%}
+  <p class="govuk-body">
+    {{params.service_name}} have plans to make {{params.total_live_staff - params.total_descoped}} of {{params.total_live_staff}} staff facing services compliant.
+  </p>
+{%- endif -%}
+<div class="govuk-!-margin-bottom-9">
+  {{progressBar({
+    heading: 'Total compliance',
+    heading_hidden: 'of ' + params.service_name,
+    heading_level: params.heading_level + 1,
+    compliance_rate: params.rate_total,
+    stat_summary: (totalTextTrue if params.stats_type === 'true' else totalTextStrategic)
+  })}}
+
+  {{progressBar({
+    heading: 'Citizen facing compliance',
+    heading_hidden: 'of ' + params.service_name,
+    heading_level: params.heading_level + 1,
+    compliance_rate: params.rate_citizen,
+    stat_summary: citizenText
+  })}}
+
+  {{progressBar({
+    heading: 'Staff facing compliance',
+    heading_hidden: 'of ' + params.service_name,
+    heading_level: params.heading_level + 1,
+    compliance_rate: params.rate_staff,
+    stat_summary: (staffTextTrue if params.stats_type === 'true' else staffTextStrategic)
+  })}}
+</div>

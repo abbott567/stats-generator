@@ -1,0 +1,75 @@
+{%- if liveServices.length > 0 -%}
+  <h2 class="govuk-heading-l">Services which are live</h2>
+  <div class="app-inset-text">
+    {%- for service in liveServices -%}
+      <div class="govuk-!-margin-bottom-9">
+        <h3 class="govuk-heading-m">{{service.name}}</h3>
+        {{ progressBar({
+          heading: 'Progress',
+          heading_level: 4,
+          compliance_rate: service.stats.progress,
+          stat_summary: (totalTextTrue if params.stats_type === 'true' else totalTextStrategic)
+        }) }}
+        {%- if service.evidence.statement.link.length > 0 -%}
+          {%- set statement_link = {
+            href: service.evidence.statement.link,
+            text: "Accessibility statement",
+            visuallyHiddenText: "for " + service.name
+          } -%}
+        {%- else -%}
+          {%- set statement_link = {} -%}
+        {%- endif -%}
+        
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                html: "WCAG 2.1<br />manual checks"
+              },
+              value: {
+                text: service.evidence.wcag.status
+              }
+            },
+            {
+              key: {
+                text: "Screenreader testing"
+              },
+              value: {
+                text: service.evidence.screenreader.status
+              }
+            },
+            {
+              key: {
+                text: "Speech recognition testing"
+              },
+              value: {
+                text: service.evidence.speech_recognition.status
+              }
+            },
+            {
+              key: {
+                text: "Magnifier testing"
+              },
+              value: {
+                text: service.evidence.magnifier.status
+              }
+            },
+            {
+              key: {
+                text: "Accessibility statement"
+              },
+              value: {
+                text: service.evidence.statement.status
+              },
+              actions: {
+                items: [
+                  statement_link
+                ]
+              }
+            }
+          ]
+        }) }}
+      </div>
+    {%- endfor -%}
+  {%- endif -%}
+</div>

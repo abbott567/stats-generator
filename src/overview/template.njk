@@ -1,0 +1,81 @@
+{%- extends '../common/layouts/default.njk' -%}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  <span class="govuk-caption-xl">{{config.org_name}}</span>
+  Accessibility compliance
+</h1>
+
+<p class="govuk-body">
+  These statistics were generated using the evidence which was stored in the 
+  {{config.org_name}} accessibility compliance repository. If you disagree 
+  with any of the statistics against a particular service, please send any updated 
+  evidence to 
+  <a class="govuk-link" href="mailto:{{config.contact_email}}">{{config.contact_email}}</a>.
+</p>
+
+<h2 class="govuk-heading-l">What is true compliance?</h2>
+<p class="govuk-body">
+  True compliance is the number of services which are covered by the Public 
+  Sector Bodies Accessibility Regulations 2018.
+</p>
+
+<h2 class="govuk-heading-l">What is strategic compliance?</h2>
+<p class="govuk-body">
+  Unlike true compliance, the stats for strategic compliance have been adjusted 
+  to remove services which are sunsetting and have no plans to be made compliant 
+  before they are decomissioned.
+</p>
+<p class="govuk-body">
+  Strategic compliance does not apply to citizen facing services. 
+</p>
+
+<h2 class="govuk-heading-l">{{config.org_name}}</h2>
+<div class="app-inset-text">
+  {{ statsSection({
+    service_name: config.org_name,
+    heading: 'True compliance',
+    heading_hidden: 'of ' + config.org_name,
+    heading_level: 3,
+    stats_type: 'true',
+
+    rate_total: overview.stats.rates.true_total,
+    total_live: overview.stats.total_live,
+    total_live_compliant: overview.stats.total_live_compliant,
+
+    rate_citizen: overview.stats.rates.true_citizen,
+    total_live_citizen: overview.stats.total_live_citizen,
+    total_live_compliant_citizen: overview.stats.total_live_compliant_citizen,
+
+    rate_staff: overview.stats.rates.true_staff,
+    total_live_staff: overview.stats.total_live_staff,
+    total_live_compliant_staff: overview.stats.total_live_compliant_staff,
+
+    total_descoped: overview.stats.total_descoped
+  }) }}
+
+  {{ statsSection({
+    service_name: config.org_name,
+    heading: 'Strategic compliance',
+    heading_hidden: 'of ' + config.org_name,
+    heading_level: 3,
+    heading_class: 'govuk-heading-m',
+    stats_type: 'strategic',
+
+    rate_total: overview.stats.rates.strategic_total,
+    total_live: overview.stats.total_live,
+    total_live_compliant: overview.stats.total_live_compliant,
+
+    rate_citizen: overview.stats.rates.true_citizen,
+    total_live_citizen: overview.stats.total_live_citizen,
+    total_live_compliant_citizen: overview.stats.total_live_compliant_citizen,
+
+    rate_staff: overview.stats.rates.strategic_staff,
+    total_live_staff: overview.stats.total_live_staff,
+    total_live_compliant_staff: overview.stats.total_live_compliant_staff,
+
+    total_descoped: overview.stats.total_descoped
+  }) }}
+</div>
+{%- endblock -%}
