@@ -3,6 +3,7 @@ module.exports = {
   alias: 'ELS', // blank / alias of service
   status: 'live', // live / not live
   type: 'citizen', // citizen / staff
+  risk: 'compliant', // compliant / high / medium / low / unknown
   sunsetting: false, // true / false
   planned_compliance: true, // true / false
   evidence: {
@@ -22,5 +23,8 @@ module.exports = {
       status: 'done', // done / not done
       link: '#link-to-statement-if-public-url' // blank / http://example.com
     }
-  }
+  },
+  notes: `
+    Service is fully compliant.
+  `
 }

@@ -4,8 +4,55 @@
 
 <h1 class="govuk-heading-xl">{{directorate.name}}</h1>
 
-<h2 class="govuk-heading-l">Overview</h2>
 <div class="app-inset-text">
+  <h2 class="govuk-heading-l">
+    Overview
+  </h2>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          html: '<strong>Total <span class="govuk-visually-hidden">number of services which are</span> live:</strong>'
+        },
+        value: {
+          text: directorate.stats.total_live
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--red">High risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.high_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--orange">Medium risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.medium_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--yellow">Low risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.low_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--green">Compliant<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: directorate.stats.compliant_risk
+        }
+      }
+    ]
+  }) }}
+
   {{ statsSection({
     service_name: directorate.name,
     heading: 'True compliance',
@@ -51,63 +98,6 @@
 
     total_descoped: directorate.stats.total_descoped
   }) }}
-</div>
-
-<h2 class="govuk-heading-l">Breakdown by function</h2>
-<div class="app-inset-text">
-  {%- for function in directorate.functions -%}
-    <h3 class="govuk-heading-m">
-      <a class="govuk-link" href="{{function.link}}">{{function.name}}</a>
-    </h3>
-
-    {{ statsSection({
-      service_name: function.name,
-      heading: 'True compliance',
-      heading_hidden: 'of ' + function.name,
-      heading_level: 4,
-      heading_class: 'govuk-heading-m',
-      stats_type: 'true',
-
-      rate_total: function.stats.rates.true_total,
-      total_live: function.stats.total_live,
-      total_live_compliant: function.stats.total_live_compliant,
-
-      rate_citizen: function.stats.rates.true_citizen,
-      total_live_citizen: function.stats.total_live_citizen,
-      total_live_compliant_citizen: function.stats.total_live_compliant_citizen,
-
-      rate_staff: function.stats.rates.true_staff,
-      total_live_staff: function.stats.total_live_staff,
-      total_live_compliant_staff: function.stats.total_live_compliant_staff,
-
-      total_descoped: function.stats.total_descoped
-    }) }}
-
-    {{ statsSection({
-      service_name: function.name,
-      heading: 'Strategic compliance',
-      heading_hidden: 'of ' + function.name,
-      heading_level: 4,
-      heading_class: 'govuk-heading-m',
-      stats_type: 'strategic',
-
-      rate_total: function.stats.rates.strategic_total,
-      total_live: function.stats.total_live,
-      total_live_compliant: function.stats.total_live_compliant,
-
-      rate_citizen: function.stats.rates.true_citizen,
-      total_live_citizen: function.stats.total_live_citizen,
-      total_live_compliant_citizen: function.stats.total_live_compliant_citizen,
-
-      rate_staff: function.stats.rates.strategic_staff,
-      total_live_staff: function.stats.total_live_staff,
-      total_live_compliant_staff: function.stats.total_live_compliant_staff,
-
-      total_descoped: function.stats.total_descoped
-    }) }}
-
-    <hr class="govuk-!-margin-bottom-8" aria-hidden="true" />
-  {%- endfor -%}
 </div>
 
 {%- endblock -%}

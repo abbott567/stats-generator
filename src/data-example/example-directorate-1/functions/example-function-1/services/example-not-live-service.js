@@ -3,6 +3,7 @@ module.exports = {
   alias: 'ELS', // blank / alias of service
   status: 'not live', // live / not live
   type: 'staff', // citizen / staff
+  risk: 'high', // compliant / high / medium / low / unknown
   sunsetting: false, // true / false
   planned_compliance: false, // true / false
   evidence: {
@@ -22,5 +23,9 @@ module.exports = {
       status: 'not done', // done / not done
       link: '' // blank / http://example.com
     }
-  }
+  },
+  notes: `
+    Some notes to explain why the service has been categoriesed and what work is 
+    in progress.
+  `
 }

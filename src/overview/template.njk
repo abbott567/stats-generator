@@ -9,7 +9,7 @@
 
 <p class="govuk-body">
   These statistics were generated using the evidence which was stored in the 
-  {{config.org_name}} accessibility compliance repository. If you disagree 
+  <a href="{{config.org_repo}}">{{config.org_name}} accessibility compliance repository</a>. If you disagree 
   with any of the statistics against a particular service, please send any updated 
   evidence to 
   <a class="govuk-link" href="mailto:{{config.contact_email}}">{{config.contact_email}}</a>.
@@ -31,8 +31,55 @@
   Strategic compliance does not apply to citizen facing services. 
 </p>
 
-<h2 class="govuk-heading-l">{{config.org_name}}</h2>
-<div class="app-inset-text">
+<div class="app-inset-text govuk-!-margin-top-9">
+  <h2 class="govuk-heading-l">
+    {{config.org_name}} overview
+  </h2>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          html: '<strong>Total <span class="govuk-visually-hidden">number of services which are</span> live:</strong>'
+        },
+        value: {
+          text: overview.stats.total_live
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--red">High risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: overview.stats.high_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--orange">Medium risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: overview.stats.medium_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--yellow">Low risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: overview.stats.low_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--green">Compliant<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: overview.stats.compliant_risk
+        }
+      }
+    ]
+  }) }}
+
   {{ statsSection({
     service_name: config.org_name,
     heading: 'True compliance',

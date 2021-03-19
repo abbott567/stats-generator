@@ -1,12 +1,57 @@
 {%- extends '../common/layouts/default.njk' -%}
-{%- from "govuk/components/summary-list/macro.njk" import govukSummaryList -%}
 
 {%- block content -%}
-      
+    
 <h1 class="govuk-heading-xl">{{function.name}}</h1>
-
-<h2 class="govuk-heading-l">Overview</h2>
 <div class="app-inset-text">
+  <h2 class="govuk-heading-l">
+    Overview
+  </h2>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          html: '<strong>Total <span class="govuk-visually-hidden">number of services which are</span> live:</strong>'
+        },
+        value: {
+          text: function.stats.total_live
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--red">High risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: function.stats.high_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--orange">Medium risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: function.stats.medium_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--yellow">Low risk<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: function.stats.low_risk
+        }
+      },
+      {
+        key: {
+          html: '<strong class="govuk-tag govuk-tag--green">Compliant<span class="govuk-visually-hidden"> services</span>:</strong>'
+        },
+        value: {
+          text: function.stats.compliant_risk
+        }
+      }
+    ]
+  }) }}
+
   {{ statsSection({
     service_name: function.name,
     heading: 'True compliance',

@@ -4,6 +4,7 @@ const { generateCitizenFacingStats } = require('./generate-stats-citizen')
 const { generateStaffFacingStats } = require('./generate-stats-staff')
 const { generateSunSettingStats } = require('./generate-stats-sunsetting')
 const { generatePlannedComplianceStats } = require('./generate-stats-planned-compliance')
+const { generateRisks } = require('./generate-stats-risks')
 const {
   generateTrueTotalComplianceRate,
   generateStrategicTotalComplianceRate,
@@ -42,6 +43,11 @@ function generateStatsForAFunction (_function) {
     total_not_live_staff: 0,
     total_staff_after_descope: 0,
 
+    high_risk: 0,
+    medium_risk: 0,
+    low_risk: 0,
+    compliant_risk: 0,
+
     total_sunsetting: 0,
     total_descoped: 0,
 
@@ -60,12 +66,14 @@ function generateStatsForAFunction (_function) {
     generateStaffFacingStats(service, functionStats)
     generateSunSettingStats(service, functionStats)
     generatePlannedComplianceStats(service, functionStats)
+    generateRisks(service, functionStats)
   })
   generateTrueTotalComplianceRate(functionStats)
   generateStrategicTotalComplianceRate(functionStats)
   generateTrueCitizenComplianceRate(functionStats)
   generateTrueStaffComplianceRate(functionStats)
   generateStrategicStaffComplianceRate(functionStats)
+
   _function.stats = functionStats
   return _function
 }

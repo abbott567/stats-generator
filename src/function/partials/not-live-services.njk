@@ -3,8 +3,25 @@
   <div class="app-inset-text">
     {%- for service in notLiveServices -%}
       <div class="govuk-!-margin-bottom-9">
-        <h3 class="govuk-heading-m">{{service.name}}</h3>
+        <h3 class="govuk-heading-m">
+          {{service.name}}
+          {%- if service.alias.length > 0 -%}
+            <span class="govuk-visually-hidden"> also known as</span><span class="govuk-caption-m">{{service.alias}}</span>
+          {%- endif -%}
+        </h3>
 
+        <h4 class="govuk-visually-hidden">
+          Service type for {{service.name}}
+        </h4>
+        {{ govukTag({
+          text: service.type + ' facing'
+        }) }}
+
+        <h4 class="govuk-visually-hidden">Notes for {{service.name}}</h4>
+        <p>
+          {{service.notes}}
+        </p>
+        
         {{ progressBar({
           heading: 'Progress',
           heading_level: 4,
