@@ -54,12 +54,18 @@
         }) }}
         {%- if service.evidence.statement.link.length > 0 -%}
           {%- set statement_link = {
-            href: service.evidence.statement.link,
-            text: "Accessibility statement",
-            visuallyHiddenText: "for " + service.name
+            items: [
+              {
+                href: service.evidence.statement.link,
+                text: "Accessibility statement",
+                visuallyHiddenText: "for " + service.name
+              }
+            ]
           } -%}
         {%- else -%}
-          {%- set statement_link = {} -%}
+          {%- set statement_link = {
+            items: []
+          } -%}
         {%- endif -%}
 
         {%- if service.evidence.wcag.fails.length > 0 -%}
@@ -107,11 +113,7 @@
               value: {
                 text: service.evidence.statement.status
               },
-              actions: {
-                items: [
-                  statement_link
-                ]
-              }
+              actions: statement_link
             }
           ]
         }) }}
