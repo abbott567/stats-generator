@@ -5,6 +5,7 @@ require('./overview')
 require('./directorates')
 require('./functions')
 require('./sitemap')
+require('./accessibility-statement')
 require('./filters')
 require('./process-exit')
 
@@ -16,6 +17,7 @@ gulp.task('build', gulp.series([
   'build:directorates',
   'build:functions',
   'build:sitemap',
+  'build:accessibility-statement',
   'build:filters',
   'build:process-exit'
 ]))
