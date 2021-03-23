@@ -6997,6 +6997,10 @@ html {
   padding: 0;
 }
 
+.app-nav ul li {
+  list-style: none;
+}
+
 .app-nav .app-nav__list-item {
   list-style: none;
   border-top: 1px solid #b1b4b6;

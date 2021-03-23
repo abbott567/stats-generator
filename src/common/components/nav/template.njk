@@ -7,6 +7,7 @@
         <a class="govuk-link govuk-link--no-visited-state" href="{{parent.link}}">{{parent.name}}</a>
       </li>
       {%- if parent.active or parent.child_active -%}
+      <li>
         <ul>
           {%- for child in parent.children -%}
             <li class="app-nav__list-sub-item{{' app-nav__list-sub-item--active' if child.active}}">
@@ -14,6 +15,7 @@
             </li>
           {%- endfor -%}
         </ul>
+      </li>
       {%- endif -%}
     {%- endfor -%}       
   </ul>
