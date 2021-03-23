@@ -45,12 +45,13 @@ function overwriteURLs (html, level) {
   return $.html()
 }
 
-async function saveHTML (html, folder, level) {
+async function saveHTML (html, folder, level, name = 'index') {
+  const filename = `${name}.html`
   if (!fs.existsSync(`${folder}`)) {
     fs.mkdirSync(`${folder}`)
   }
   html = overwriteURLs(html, level)
-  fs.writeFileSync(`${folder}/index.html`, html, (err) => {
+  fs.writeFileSync(`${folder}/${filename}`, html, (err) => {
     if (err) {
       console.log(err)
     }

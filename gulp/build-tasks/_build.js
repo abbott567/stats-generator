@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 require('./clean')
 require('./start-server')
+require('./readme')
 require('./overview')
 require('./directorates')
 require('./functions')
@@ -13,6 +14,7 @@ gulp.task('build', gulp.series([
   'sass',
   'build:clean',
   'build:start-server',
+  'build:readme',
   'build:overview',
   'build:directorates',
   'build:functions',

@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>{{page_title}} - {{config.org_name}} accessibility statistics - {{config.date}}</title>
+
+  <style>
+    {% include '../../assets/css/style.css' %}
+  </style>
+</head>
+
+<body>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-width-container govuk-!-margin-top-9">
+    <div class="govuk-grid-column-two-thirds">
+        <main id="main">
+            {%- block content -%}{%- endblock  -%}
+        </main>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{%- extends '../../common/layouts/readme.njk' -%}
+{%- set page_title = 'ReadMe' -%}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  ReadMe
+</h1>
+
+<div class="govuk-!-margin-top-9">
+  <h2 class="govuk-heading-l">
+    Things to note before you start
+  </h2>
+  <p class="govuk-body">
+    Any of the HTML files can be shared as a standalone file. However, for the best 
+    user experience the whole report should be downloaded. This way you can navigate 
+    between the sections using the links.
+  </p>
+  <p class="govuk-body">
+    Extracting the files to OneDrive may not work as the file-paths excede the limited 
+    lengths. So to view the report it is recommended to extract it to your Desktop.
+  </p>  
+
+  <h2 class="govuk-heading-l">
+    Viewing the report
+  </h2>
+  <ol class="govuk-list govuk-list--number">
+    <li>
+      Download the HTML zip of the compliance report to your Desktop.
+    </li>
+    <li>
+      Right click the zip file and choose Extract all.
+    </li>
+    <li>
+      Open the extracted folder and open the single <strong>index.html</strong> file to view the report.
+    </li>
+  </ol>
+</div>
+
+{%- endblock -%}
