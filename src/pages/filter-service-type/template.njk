@@ -1,12 +1,12 @@
-{%- extends '../common/layouts/default.njk' -%}
+{%- extends '../../common/layouts/default.njk' -%}
 
 {%- block content -%}
 
 <h1 class="govuk-heading-xl">
-  {{riskLevel|capitalize}} risk services
+  {{type|capitalize}} facing services
 </h1>
 <p class="govuk-body">
-  There are {{filteredData.stats.service_count}} {{riskLevel}} facing services in total.
+  There are {{filteredData.stats.service_count}} {{type}} facing services in total.
 </p>
 
 {%- for directorate in filteredData -%}
@@ -18,7 +18,7 @@
       </h3>
       {%- if function.services.length === 0 -%}
         <p class="govuk-body">
-          No {{riskLevel}} risk services
+          No {{type}} facing services
         </p>
       {%- else -%}
         <ul class="govuk-list govuk-list--bullet">

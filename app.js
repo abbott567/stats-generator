@@ -44,13 +44,13 @@ app.use(cookieParser())
 
 const { generateNavigationData } = require('./src/utils/generate-navigation.data')
 app.use(generateNavigationData)
-app.use('/', require('./src/sitemap/routes'))
-app.use('/', require('./src/filter-service-type/routes'))
-app.use('/', require('./src/filter-service-risk/routes'))
-app.use('/', require('./src/filter-service-compliant/routes'))
-app.use('/', require('./src/overview/routes'))
-app.use('/', require('./src/directorate/routes'))
-app.use('/', require('./src/function/routes'))
+app.use('/', require('./src/pages/sitemap/routes'))
+app.use('/', require('./src/pages/filter-service-type/routes'))
+app.use('/', require('./src/pages/filter-service-risk/routes'))
+app.use('/', require('./src/pages/filter-service-compliant/routes'))
+app.use('/', require('./src/pages/overview/routes'))
+app.use('/', require('./src/pages/directorate/routes'))
+app.use('/', require('./src/pages/function/routes'))
 
 app.use('/', (err, req, res, next) => {
   if (err) {
