@@ -52,71 +52,61 @@
           compliance_rate: service.stats.progress,
           stat_summary: (totalTextTrue if params.stats_type === 'true' else totalTextStrategic)
         }) }}
-        {%- if service.evidence.statement.link.length > 0 -%}
-          {%- set statement_link = {
-            items: [
-              {
-                href: service.evidence.statement.link,
-                text: "Accessibility statement",
-                visuallyHiddenText: "for " + service.name
-              }
-            ]
-          } -%}
-        {%- else -%}
-          {%- set statement_link = {
-            items: []
-          } -%}
-        {%- endif -%}
-
+        
         {%- if service.evidence.wcag.fails.length > 0 -%}
           {# WCAG Fails #}
         {%- endif -%}
 
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                html: "WCAG 2.1<br />manual checks"
-              },
-              value: {
-                text: service.evidence.wcag.status
-              }
-            },
-            {
-              key: {
-                text: "Screenreader testing"
-              },
-              value: {
-                text: service.evidence.screenreader.status
-              }
-            },
-            {
-              key: {
-                text: "Speech recognition testing"
-              },
-              value: {
-                text: service.evidence.speech_recognition.status
-              }
-            },
-            {
-              key: {
-                text: "Magnifier testing"
-              },
-              value: {
-                text: service.evidence.magnifier.status
-              }
-            },
-            {
-              key: {
-                text: "Accessibility statement"
-              },
-              value: {
-                text: service.evidence.statement.status
-              },
-              actions: statement_link
-            }
-          ]
-        }) }}
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              WCAG 2.1 <br />
+              manual checks
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{service.evidence.wcag.status}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Screenreader testing
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{service.evidence.screenreader.status}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Speech recognition testing
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{service.evidence.speech_recognition.status}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Magnifier testing
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{service.evidence.magnifier.status}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Accessibility statement
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{service.evidence.statement.status}}
+            </dd>
+            {%- if service.evidence.statement.link.length > 0 -%}
+              <dd class="govuk-summary-list__value">
+                <a class="govuk-link" href="{{service.evidence.statement.link}}">
+                  Accessibility statement <span class="govuk-visually-hidden"> for {{service.name}}</span>
+                </a>
+              </dd>
+            {%- endif -%}
+          </div>
+        </dl>
       </div>
     {%- endfor -%}
   {%- endif -%}
