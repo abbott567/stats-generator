@@ -4,6 +4,8 @@ require('./start-server')
 require('./overview')
 require('./directorates')
 require('./functions')
+require('./sitemap')
+require('./filters')
 require('./process-exit')
 
 gulp.task('build', gulp.series([
@@ -13,5 +15,7 @@ gulp.task('build', gulp.series([
   'build:overview',
   'build:directorates',
   'build:functions',
+  'build:sitemap',
+  'build:filters',
   'build:process-exit'
 ]))
