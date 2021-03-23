@@ -8,6 +8,7 @@ require('./functions')
 require('./sitemap')
 require('./accessibility-statement')
 require('./filters')
+require('./zip')
 require('./process-exit')
 
 gulp.task('build', gulp.series([
@@ -21,5 +22,6 @@ gulp.task('build', gulp.series([
   'build:sitemap',
   'build:accessibility-statement',
   'build:filters',
+  'build:zip',
   'build:process-exit'
 ]))

@@ -24,6 +24,7 @@
     "gulp": "^4.0.2",
     "gulp-nodemon": "^2.5.0",
     "gulp-sass": "^4.1.0",
+    "gulp-zip": "^5.1.0",
     "htmlmin": "0.0.7",
     "node-sass": "^5.0.0"
   }
