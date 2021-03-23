@@ -64,7 +64,7 @@
               manual checks
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.wcag.status}}
+              {{service.evidence.wcag.status|capitalize}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -72,7 +72,7 @@
               Screenreader testing
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.screenreader.status}}
+              {{service.evidence.screenreader.status|capitalize}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -80,7 +80,7 @@
               Speech recognition testing
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.speech_recognition.status}}
+              {{service.evidence.speech_recognition.status|capitalize}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -88,7 +88,7 @@
               Magnifier testing
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.magnifier.status}}
+              {{service.evidence.magnifier.status|capitalize}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -96,15 +96,14 @@
               Accessibility statement
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.statement.status}}
-            </dd>
-            {%- if service.evidence.statement.link.length > 0 -%}
-              <dd class="govuk-summary-list__value">
-                <a class="govuk-link" href="{{service.evidence.statement.link}}">
-                  Accessibility statement <span class="govuk-visually-hidden"> for {{service.name}}</span>
-                </a>
-              </dd>
+              {{service.evidence.statement.status|capitalize}}
+              {%- if service.evidence.statement.link.length > 0 -%}
+              <br />
+              <a class="govuk-link" href="{{service.evidence.statement.link}}">
+                View accessibility statement <span class="govuk-visually-hidden"> for {{service.name}}</span>
+              </a>
             {%- endif -%}
+            </dd>
           </div>
         </dl>
       </div>
