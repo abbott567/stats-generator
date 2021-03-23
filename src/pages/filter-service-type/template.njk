@@ -1,4 +1,6 @@
 {%- extends '../../common/layouts/default.njk' -%}
+{%- set page_title = type|capitalize + ' facing services' -%}
+
 {% if type === 'citizen'%}
   {%- set filterCitizenActive = true -%}
 {%- elif type === 'staff' -%}
