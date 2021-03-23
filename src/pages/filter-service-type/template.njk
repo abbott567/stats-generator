@@ -1,4 +1,9 @@
 {%- extends '../../common/layouts/default.njk' -%}
+{% if type === 'citizen'%}
+  {%- set filterCitizenActive = true -%}
+{%- elif type === 'staff' -%}
+  {%- set filterStaffActive = true -%}
+{%- endif -%}
 
 {%- block content -%}
 

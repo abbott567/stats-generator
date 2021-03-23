@@ -1,5 +1,13 @@
 {%- extends '../../common/layouts/default.njk' -%}
 
+{% if riskLevel === 'high'%}
+  {%- set filterHighRiskActive = true -%}
+{%- elif riskLevel === 'medium' -%}
+  {%- set filterMediumRiskActive = true -%}
+{%- elif riskLevel === 'low' -%}
+  {%- set filterLowRiskActive = true -%}
+{%- endif -%}
+
 {%- block content -%}
 
 <h1 class="govuk-heading-xl">
