@@ -36,7 +36,7 @@
   <div class="app-progress-bar__background">
     <div class="app-progress-bar__foreground app-progress-bar__foreground--{{-bar_colour-}}" style="width: {{-bar_width-}}"></div>
   </div>
-  <p class="app-progress-bar__rate">{{bar_rate}}</p>
+  <p class="app-progress-bar__rate">{{bar_rate}}<span class="govuk-visually-hidden"> compliant</span></p>
   {%- if params.stat_summary -%}
   <p class="govuk-!-margin-top-1">
     {{params.stat_summary}}
