@@ -34,6 +34,30 @@ function filterSunsettingServices (data) {
   return newData
 }
 
+function filterNoPlansForCompliance (data) {
+  const directorates = getDirectorates(data)
+  const allServices = []
+  const stats = { service_count: 0 }
+  directorates.forEach(directorate => {
+    const _functions = getFunctions(directorate)
+    _functions.forEach(_function => {
+      const services = getAFunctionsServices(_function)
+      const filteredServices = []
+      services.forEach(service => {
+        if (service.planned_compliance === false) {
+          stats.service_count += 1
+          filteredServices.push(service)
+        }
+      })
+      _function.services = filteredServices
+    })
+    allServices.push(directorate)
+  })
+  const newData = allServices
+  newData.stats = stats
+  return newData
+}
+
 function filterServicesByType (data, type) {
   const directorates = getDirectorates(data)
   const allServices = []
@@ -90,5 +114,6 @@ module.exports = {
   filterNotLiveServices,
   filterServicesByType,
   filterServicesByRisk,
-  filterSunsettingServices
+  filterSunsettingServices,
+  filterNoPlansForCompliance
 }

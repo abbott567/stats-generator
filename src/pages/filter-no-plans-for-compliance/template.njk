@@ -1,0 +1,35 @@
+{%- extends '../../common/layouts/default.njk' -%}
+{%- set page_title = 'Services with no plans for compliance' -%}
+{%- set filtersNoPlansForCompliance = true -%}
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  Services with no plans for compliance
+</h1>
+<p class="govuk-body">
+  There are {{filteredData.stats.service_count}} services with no plans for compliance.
+</p>
+
+{%- for directorate in filteredData -%}
+  <div class="app-inset-text govuk-!-margin-top-9">
+    <h2 class="govuk-heading-m">{{directorate.name}}</h2>
+    {%- for function in directorate.functions -%}
+      <h3 class="govuk-heading-s">
+        {{function.name}}
+      </h3>
+      {%- if function.services.length === 0 -%}
+        <p class="govuk-body">
+          All services will be made compliant.
+        </p>
+      {%- else -%}
+        <ul class="govuk-list govuk-list--bullet">
+          {%- for service in function.services -%}
+          <li>{{service.name}}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endfor -%}
+
+{%- endblock -%}
