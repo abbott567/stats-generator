@@ -1,0 +1,35 @@
+{%- extends '../../common/layouts/default.njk' -%}
+{%- set page_title = type|capitalize + ' facing services' -%}
+{%- set filtersSunsettingActive = true -%}
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  Sunsetting services
+</h1>
+<p class="govuk-body">
+  There are {{filteredData.stats.service_count}} sunsetting services in total.
+</p>
+
+{%- for directorate in filteredData -%}
+  <div class="app-inset-text govuk-!-margin-top-9">
+    <h2 class="govuk-heading-m">{{directorate.name}}</h2>
+    {%- for function in directorate.functions -%}
+      <h3 class="govuk-heading-s">
+        {{function.name}}
+      </h3>
+      {%- if function.services.length === 0 -%}
+        <p class="govuk-body">
+          No sunsetting services
+        </p>
+      {%- else -%}
+        <ul class="govuk-list govuk-list--bullet">
+          {%- for service in function.services -%}
+          <li>{{service.name}}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endfor -%}
+
+{%- endblock -%}
