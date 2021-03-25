@@ -7,7 +7,9 @@ const filters = [
   'medium-risk-services',
   'low-risk-services',
   'citizen-facing-services',
-  'staff-facing-services'
+  'staff-facing-services',
+  'sunsetting-services',
+  'no-plans-for-compliance'
 ]
 
 filters.forEach(filter => {
@@ -24,5 +26,7 @@ gulp.task('build:filters', gulp.series([
   'build:medium-risk-services',
   'build:low-risk-services',
   'build:citizen-facing-services',
-  'build:staff-facing-services'
+  'build:staff-facing-services',
+  'build:sunsetting-services',
+  'build:no-plans-for-compliance'
 ]))
