@@ -9,6 +9,7 @@ function overwriteURLs (html, level) {
     const link = $(this).attr('href')
     const isNotJumpLink = !link.match(/#/)
     const isNotInternetLink = !link.match(/http/)
+    const isNotEmailLink = !link.match(/mailto/)
     const isRootURL = link === '/'
 
     if (isRootURL) {
@@ -25,7 +26,7 @@ function overwriteURLs (html, level) {
       return $(this).attr('href', newLink)
     }
 
-    if (isNotJumpLink && isNotInternetLink) {
+    if (isNotJumpLink && isNotInternetLink && isNotEmailLink) {
       if (level === 'root') {
         const newLink = link.replace(/\//, '')
         return $(this).attr('href', newLink + '/index.html')
@@ -45,12 +46,11 @@ function overwriteURLs (html, level) {
   return $.html()
 }
 
-async function saveHTML (html, folder, level, name = 'index') {
+async function saveHTML (html, folder, name = 'index') {
   const filename = `${name}.html`
   if (!fs.existsSync(`${folder}`)) {
     fs.mkdirSync(`${folder}`)
   }
-  html = overwriteURLs(html, level)
   fs.writeFileSync(`${folder}/${filename}`, html, (err) => {
     if (err) {
       console.log(err)
@@ -69,4 +69,4 @@ async function scrape (url) {
   )
 }
 
-module.exports = { saveHTML, scrape }
+module.exports = { saveHTML, scrape, overwriteURLs }

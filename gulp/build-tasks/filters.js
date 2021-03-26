@@ -1,32 +1,20 @@
 const gulp = require('gulp')
-const { scrape, saveHTML } = require('./helpers')
 
-const filters = [
-  'compliant-services',
-  'high-risk-services',
-  'medium-risk-services',
-  'low-risk-services',
-  'citizen-facing-services',
-  'staff-facing-services',
-  'sunsetting-services',
-  'no-plans-for-compliance'
-]
-
-filters.forEach(filter => {
-  gulp.task(`build:${filter}`, async function (done) {
-    const html = await scrape(`http://localhost:3000/${filter}`)
-    await saveHTML(html, `./build/${filter}`, 'directorate')
-    done()
-  })
-})
-
-gulp.task('build:filters', gulp.series([
-  'build:compliant-services',
-  'build:high-risk-services',
-  'build:medium-risk-services',
-  'build:low-risk-services',
-  'build:citizen-facing-services',
-  'build:staff-facing-services',
-  'build:sunsetting-services',
-  'build:no-plans-for-compliance'
+gulp.task('build:filters', gulp.parallel([
+  'build:filters:compliant-services-local',
+  'build:filters:compliant-services-web',
+  'build:filters:high-risk-services-local',
+  'build:filters:high-risk-services-web',
+  'build:filters:medium-risk-services-local',
+  'build:filters:medium-risk-services-web',
+  'build:filters:low-risk-services-local',
+  'build:filters:low-risk-services-web',
+  'build:filters:citizen-facing-services-local',
+  'build:filters:citizen-facing-services-web',
+  'build:filters:staff-facing-services-local',
+  'build:filters:staff-facing-services-web',
+  'build:filters:sunsetting-services-local',
+  'build:filters:sunsetting-services-web',
+  'build:filters:no-plans-for-compliance-local',
+  'build:filters:no-plans-for-compliance-web'
 ]))
