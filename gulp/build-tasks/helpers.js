@@ -63,7 +63,7 @@ async function scrape (url) {
   return htmlmin(
     response.body,
     {
-      collapseWhitespace: true,
+      conservativeCollapse: true,
       removeComments: true
     }
   )
