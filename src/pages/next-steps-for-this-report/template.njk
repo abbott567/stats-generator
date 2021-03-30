@@ -1,0 +1,22 @@
+{%- extends '../../common/layouts/default.njk' -%}
+{%- set page_title = 'Next steps for this report' -%}
+
+{% set nextStepsActive = true %}
+
+{%- block content -%}
+
+<h1 class="govuk-heading-xl">
+  Next steps for this report
+</h1>
+
+<div class="app-inset-text">
+
+{%- for paragraph in config.next_steps -%}
+  <p class="govuk-body">
+    {{paragraph|safe}}
+  </p>
+{%- endfor -%}
+
+</div>
+
+{%- endblock -%}

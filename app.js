@@ -44,6 +44,7 @@ app.use(cookieParser())
 
 const { generateNavigationData } = require('./src/utils/generate-navigation.data')
 app.use(generateNavigationData)
+app.use('/', require('./src/pages/next-steps-for-this-report/routes'))
 app.use('/', require('./src/pages/readme/routes'))
 app.use('/', require('./src/pages/accessibility-statement/routes'))
 app.use('/', require('./src/pages/sitemap/routes'))

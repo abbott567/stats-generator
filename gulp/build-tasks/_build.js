@@ -5,6 +5,7 @@ require('./readme')
 require('./overview')
 require('./directorates')
 require('./functions')
+require('./next-steps')
 require('./sitemap')
 require('./accessibility-statement')
 require('./filters-compliant-services')
@@ -27,6 +28,7 @@ gulp.task('build', gulp.series([
   'build:overview',
   'build:directorates',
   'build:functions',
+  'build:next-steps',
   'build:sitemap',
   'build:accessibility-statement',
   'build:filters',
