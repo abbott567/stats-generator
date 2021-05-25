@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "gulp",
-    "build": "gulp build"
+    "build": "gulp build",
+    "excel": "gulp excel"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "cheerio": "^1.0.0-rc.5",
     "del": "^6.0.0",
+    "exceljs": "^4.2.1",
     "got": "^11.8.2",
     "gulp": "^4.0.2",
     "gulp-nodemon": "^2.5.0",

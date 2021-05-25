@@ -106,6 +106,15 @@ function filterServicesByRisk (data, risk) {
   return newData
 }
 
+function sanitizeRates (stats) {
+  for (const [key, value] of Object.entries(stats.rates)) {
+    if (isNaN(value)) {
+      stats.rates[key] = 0
+    }
+  }
+  return stats
+}
+
 module.exports = {
   getDirectorates,
   getFunctions,
@@ -115,5 +124,6 @@ module.exports = {
   filterServicesByType,
   filterServicesByRisk,
   filterSunsettingServices,
-  filterNoPlansForCompliance
+  filterNoPlansForCompliance,
+  sanitizeRates
 }

@@ -1,4 +1,4 @@
-const { getFunctions, getAFunctionsServices } = require('./helpers')
+const { getFunctions, getAFunctionsServices, sanitizeRates } = require('./helpers')
 const { generateStatsForAService } = require('./generate-stats-service')
 const { generateCitizenFacingStats } = require('./generate-stats-citizen')
 const { generateStaffFacingStats } = require('./generate-stats-staff')
@@ -73,7 +73,11 @@ function generateStatsForOverview (data) {
   generateTrueCitizenComplianceRate(overviewStats)
   generateTrueStaffComplianceRate(overviewStats)
   generateStrategicStaffComplianceRate(overviewStats)
+
+  sanitizeRates(overviewStats)
+
   data.stats = overviewStats
+  return data
 }
 
 module.exports = { generateStatsForOverview }
