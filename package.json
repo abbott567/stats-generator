@@ -5,7 +5,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "excel": "gulp excel"
+    "export": "gulp export"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

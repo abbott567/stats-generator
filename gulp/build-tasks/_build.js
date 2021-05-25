@@ -18,6 +18,7 @@ require('./filters-sunsetting-services')
 require('./filters-no-plans-for-compliance')
 require('./filters')
 require('./zip')
+require('../export-tasks/_export')
 require('./process-exit')
 
 gulp.task('build', gulp.series([
@@ -33,5 +34,6 @@ gulp.task('build', gulp.series([
   'build:accessibility-statement',
   'build:filters',
   'build:zip',
+  'export:excel',
   'build:process-exit'
 ]))
