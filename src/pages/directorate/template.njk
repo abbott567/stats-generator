@@ -3,7 +3,10 @@
 
 {%- block content -%}
 
-<h1 class="govuk-heading-xl">{{directorate.name}}</h1>
+<h1 class="govuk-heading-xl">
+  {{directorate.name}}
+  {% if directorate.alias.length > 0 %}<span class="govuk-caption-xl">{{directorate.alias}}</span>{% endif %}
+</h1>
 
 <div class="app-inset-text">
   <h2 class="govuk-heading-l">
