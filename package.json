@@ -19,15 +19,17 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "cheerio": "^1.0.0-rc.5",
+    "chai": "^4.3.4",
+    "cheerio": "^1.0.0-rc.10",
     "del": "^6.0.0",
     "exceljs": "^4.2.1",
     "got": "^11.8.2",
     "gulp": "^4.0.2",
     "gulp-nodemon": "^2.5.0",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.0.0",
     "gulp-zip": "^5.1.0",
     "htmlmin": "0.0.7",
-    "node-sass": "^5.0.0"
+    "mocha": "^9.0.2",
+    "node-sass": "^6.0.1"
   }
 }
