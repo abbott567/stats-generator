@@ -5,7 +5,8 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "export": "gulp export"
+    "export": "gulp export",
+    "test": "mocha tests/test.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
