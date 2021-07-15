@@ -1,13 +1,14 @@
 const data = require('../../src/data/data')
+const excel = require('../export-tasks/excel-overrides')
 
 function generateFunctionsWorksheet (workbook) {
-  const wsFunctions = workbook.addWorksheet('Functions')
+  const wsFunctions = workbook.addWorksheet(`${excel.tabNames._function}s` || 'Functions')
   const { generateStatsForAFunction } = require('../../src/utils/generate-stats-function')
 
   wsFunctions.columns = [
     { header: 'Name', key: 'name', width: 15 },
     { header: 'Aias', key: 'alias', width: 15 },
-    { header: 'Directorate', key: 'directorate', width: 15 },
+    { header: (excel.tabNames.directorate || 'Directorate'), key: 'directorate', width: 15 },
     { header: 'True compliance %', key: 'rates_true_total', width: 15 },
     { header: 'True compliance citizen %', key: 'rates_true_citizen', width: 15 },
     { header: 'True compliance staff %', key: 'rates_true_staff', width: 15 },
@@ -38,9 +39,11 @@ function generateFunctionsWorksheet (workbook) {
   data.forEach(directorate => {
     directorate.functions.forEach(_functionRaw => {
       const _function = generateStatsForAFunction(_functionRaw)
+      const override = excel.override({ directorate, _function })
+
       wsFunctions.addRow({
-        directorate: directorate.name,
-        name: _function.name,
+        directorate: override.directorateName || directorate.name,
+        name: override.functionName || _function.name,
         alias: _function.alias,
         rates_true_total: _function.stats.rates.true_total,
         rates_true_citizen: _function.stats.rates.true_citizen,

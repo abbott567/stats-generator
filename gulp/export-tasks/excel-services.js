@@ -1,13 +1,15 @@
+const excel = require('../export-tasks/excel-overrides')
+
 function generateServicesWorksheet (workbook) {
-  const wsServices = workbook.addWorksheet('Services')
+  const wsServices = workbook.addWorksheet(`${excel.tabNames.service}s` || 'Services')
   const { generateStatsForAService } = require('../../src/utils/generate-stats-service')
   const data = require('../../src/data/data')
 
   wsServices.columns = [
     { header: 'Service name', key: 'service_name', width: 60 },
     { header: 'Alias', key: 'alias', width: 18 },
-    { header: 'Function', key: 'function', width: 34 },
-    { header: 'Directorate', key: 'directorate', width: 34 },
+    { header: (excel.tabNames._function || 'Function'), key: 'function', width: 34 },
+    { header: (excel.tabNames.directorate || 'Directorate'), key: 'directorate', width: 34 },
     { header: 'Compliant', key: 'compliant', width: 18 },
     { header: 'Progress', key: 'progress', width: 18 },
     { header: 'Status', key: 'status', width: 7 },
@@ -27,10 +29,12 @@ function generateServicesWorksheet (workbook) {
     directorate.functions.forEach(_function => {
       _function.services.forEach(serviceRaw => {
         const service = generateStatsForAService(serviceRaw)
+        const override = excel.override({ directorate, _function, service })
+
         wsServices.addRow({
-          directorate: directorate.name,
-          function: _function.name,
-          service_name: service.name,
+          directorate: directorate.directorateName || directorate.name,
+          function: override.functionName || _function.name,
+          service_name: override.serviceName || service.name,
           alias: service.alias,
           compliant: service.stats.compliant,
           progress: service.stats.progress,

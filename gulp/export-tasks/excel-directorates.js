@@ -1,8 +1,9 @@
 const data = require('../../src/data/data')
 const { generateStatsForADirectorate } = require('../../src/utils/generate-stats-directorate')
+const excel = require('../export-tasks/excel-overrides')
 
 function generateDirectoratesWorksheet (workbook) {
-  const wsDirectorates = workbook.addWorksheet('Directorates')
+  const wsDirectorates = workbook.addWorksheet(`${excel.tabNames.directorate}s` || 'Directorates')
 
   wsDirectorates.columns = [
     { header: 'Name', key: 'name', width: 15 },
@@ -36,8 +37,10 @@ function generateDirectoratesWorksheet (workbook) {
 
   data.forEach(directorateRaw => {
     const directorate = generateStatsForADirectorate(directorateRaw)
+    const override = excel.override({ directorate })
+
     wsDirectorates.addRow({
-      name: directorate.name,
+      name: override.directorateName || directorate.name,
       alias: directorate.alias,
       rates_true_total: directorate.stats.rates.true_total,
       rates_true_citizen: directorate.stats.rates.true_citizen,
