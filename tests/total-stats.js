@@ -20,7 +20,7 @@ raw.forEach(directorate => {
 
         if (service.type === 'citizen') {
           citizenFacingCount++
-        } else if (service.type = 'staff') {
+        } else if (service.type === 'staff') {
           staffFacingCount++
         }
 
@@ -38,7 +38,7 @@ raw.forEach(directorate => {
   })
 })
 
-describe('The statistics should be accurate', function () {
+describe('The total statistics should be accurate', function () {
   it('stats reported for total number of live services should be correct', function () {
     expect(data.stats.total_live).to.equal(liveServicesCount)
   })

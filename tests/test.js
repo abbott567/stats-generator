@@ -1,3 +1,5 @@
+require('./data-valid')
 require('./evidence-and-status')
 require('./risk-status')
-require('./stats')
+require('./function-stats')
+require('./total-stats')
