@@ -4,6 +4,7 @@ module.exports = {
   status: 'live', // live / not live
   type: 'citizen', // citizen / staff
   risk: 'low', // compliant / high / medium / low / unknown
+  critical: false, // true / false
   sunsetting: false, // true / false
   planned_compliance: true, // true / false
   evidence: {

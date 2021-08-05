@@ -27,6 +27,18 @@ describe('The JSON data should be valid', function () {
     })
   })
 
+  it('should have a critical attr of [true, false]', function () {
+    data.forEach(directorate => {
+      directorate.functions.forEach(_function => {
+        _function.services.forEach(service => {
+          const attribute = service.critical
+          const attributesAllowed = [true, false]
+          expect(attributesAllowed).to.contain(attribute, service.name)
+        })
+      })
+    })
+  })
+
   it('should have a risk attr of [high, medium, low, compliant, unknown, n/a]', function () {
     data.forEach(directorate => {
       directorate.functions.forEach(_function => {
