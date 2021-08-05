@@ -4,7 +4,7 @@
     {%- for service in liveServices -%}
       <div class="govuk-!-margin-bottom-9">
         <h3 class="govuk-heading-m">
-          {{service.name}}
+          {{- service.name -}}
           {%- if service.alias.length > 0 -%}
             <span class="govuk-visually-hidden"> also known as</span><span class="govuk-caption-m">{{service.alias}}</span>
           {%- endif -%}
@@ -41,35 +41,47 @@
           text: service.type + ' facing'
         }) }}
 
-        {% if service.sunsetting === true %}
-          {{ govukTag({
-            text: 'Sunsetting',
-            classes: 'govuk-tag--pink'
-          }) }}
-        {% endif %}
+        {%- if service.critical === true or service.sunsetting === true -%}
+          <h4 class="govuk-visually-hidden">
+            Additional information for {{service.name}}
+          </h4>
+          {%- if service.critical === true -%}
+            {{ govukTag({
+              text: 'Critical',
+              classes: 'govuk-tag--red'
+            }) }}
+          {%- endif -%}
+          
+          {%- if service.sunsetting === true -%}
+            {{ govukTag({
+              text: 'Sunsetting',
+              classes: 'govuk-tag--pink'
+            }) }}
+          {%- endif -%}
+        {%- endif -%}
 
         <h4 class="govuk-visually-hidden">Notes for {{service.name}}</h4>
         <p>
-          {{service.notes}}
+          {{- service.notes -}}
         </p>
 
-        {% if service.planned_compliance === true %}
+        {%- if service.planned_compliance === true -%}
           {{ progressBar({
             heading: 'Progress',
             heading_level: 4,
             compliance_rate: service.stats.progress,
             stat_summary: (totalTextTrue if params.stats_type === 'true' else totalTextStrategic)
           }) }}
-        {% else %}
+        {%- else -%}
           {{ govukWarningText({
             text: "This service has no plans for compliance.",
             iconFallbackText: "Important"
           }) }}
-        {% endif %}
-        
-        {%- if service.evidence.wcag.fails.length > 0 -%}
-          {# WCAG Fails #}
         {%- endif -%}
+        
+        {# {%- if service.evidence.wcag.fails.length > 0 -%} #}
+          {# WCAG Fails #}
+        {# {%- endif -%} #}
 
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
@@ -78,7 +90,7 @@
               manual checks
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.wcag.status|capitalize}}
+              {{- service.evidence.wcag.status|capitalize -}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -86,7 +98,7 @@
               Screenreader testing
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.screenreader.status|capitalize}}
+              {{- service.evidence.screenreader.status|capitalize -}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -94,7 +106,7 @@
               Speech recognition testing
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.speech_recognition.status|capitalize}}
+              {{- service.evidence.speech_recognition.status|capitalize -}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -102,7 +114,7 @@
               Magnifier testing
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.magnifier.status|capitalize}}
+              {{- service.evidence.magnifier.status|capitalize -}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -110,11 +122,11 @@
               Accessibility statement
             </dt>
             <dd class="govuk-summary-list__value">
-              {{service.evidence.statement.status|capitalize}}
+              {{- service.evidence.statement.status|capitalize -}}
               {%- if service.evidence.statement.link.length > 0 -%}
               <br />
               <a class="govuk-link" href="{{service.evidence.statement.link}}">
-                View accessibility statement <span class="govuk-visually-hidden"> for {{service.name}}</span>
+                View accessibility statement <span class="govuk-visually-hidden"> for {{- service.name -}}</span>
               </a>
             {%- endif -%}
             </dd>
