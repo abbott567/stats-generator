@@ -7,6 +7,8 @@
   {%- set filterMediumRiskActive = true -%}
 {%- elif riskLevel === 'low' -%}
   {%- set filterLowRiskActive = true -%}
+{%- elif riskLevel === 'unknown' -%}
+  {%- set filterUnknownRiskActive = true -%}
 {%- endif -%}
 
 {%- block content -%}
@@ -19,7 +21,7 @@
 </p>
 
 {%- for directorate in filteredData -%}
-  <div class="app-inset-text govuk-!-margin-top-9">
+  <div class="app-inset-text govuk-!-margin-top-6">
     <h2 class="govuk-heading-m">{{directorate.name}}</h2>
     {%- for function in directorate.functions -%}
       <h3 class="govuk-heading-s">
@@ -27,12 +29,18 @@
       </h3>
       {%- if function.services.length === 0 -%}
         <p class="govuk-body">
-          No {{riskLevel}} risk services
+          No {{riskLevel}} risk services.
         </p>
       {%- else -%}
         <ul class="govuk-list govuk-list--bullet">
           {%- for service in function.services -%}
-          <li>{{service.name}} - {{service.status}}</li>
+          <li class="govuk-!-margin-bottom-5">
+            {{service.name}}<br />
+            <p class="govuk-visually-hidden">
+              Labels for {{service.name}}:
+            </p>
+            {{- labels(service, {add_classes: 'app-tag'}) -}}
+          </li>
           {%- endfor -%}
         </ul>
       {%- endif -%}

@@ -43,6 +43,11 @@
         Low risk services
       </a>
     </li>
+    <li class="app-nav__list-item{{' app-nav__list-item--active' if filterUnknownRiskActive}}">
+      <a class="govuk-link govuk-link--no-visited-state" href="/unknown-risk-services">
+        Unknown risk services
+      </a>
+    </li>
     <li class="app-nav__list-item{{' app-nav__list-item--active' if filterCitizenActive}}">
       <a class="govuk-link govuk-link--no-visited-state" href="/citizen-facing-services">
         Citizen facing services
@@ -53,12 +58,17 @@
         Staff facing services
       </a>
     </li>
-    <li class="app-nav__list-item{{' app-nav__list-item--active' if filtersSunsettingActive}}">
+    <li class="app-nav__list-item{{' app-nav__list-item--active' if filterCriticalActive}}">
+      <a class="govuk-link govuk-link--no-visited-state" href="/critical-services">
+        Critical services
+      </a>
+    </li>
+    <li class="app-nav__list-item{{' app-nav__list-item--active' if filterSunsettingActive}}">
       <a class="govuk-link govuk-link--no-visited-state" href="/sunsetting-services">
         Sunsetting services
       </a>
     </li>
-    <li class="app-nav__list-item{{' app-nav__list-item--active' if filtersNoPlansForCompliance}}">
+    <li class="app-nav__list-item{{' app-nav__list-item--active' if filterNoPlansForCompliance}}">
       <a class="govuk-link govuk-link--no-visited-state" href="/no-plans-for-compliance">
         No plans for compliance
       </a>

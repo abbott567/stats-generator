@@ -1,32 +1,25 @@
 {%- extends '../../common/layouts/default.njk' -%}
-{%- set page_title = type|capitalize + ' facing services' -%}
-
-{% if type === 'citizen'%}
-  {%- set filterCitizenActive = true -%}
-{%- elif type === 'staff' -%}
-  {%- set filterStaffActive = true -%}
-{%- endif -%}
+{%- set page_title = 'Critical services' -%}
+{%- set filterCriticalActive = true -%}
 
 {%- block content -%}
 
 <h1 class="govuk-heading-xl">
-  {{type|capitalize}} facing services
+  Critical services
 </h1>
 <p class="govuk-body">
-  There are {{filteredData.stats.service_count}} {{type}} facing services in total.
+  There are {{filteredData.stats.service_count}} critical services in total.
 </p>
 
 {%- for directorate in filteredData -%}
-  <div class="app-inset-text govuk-!-margin-top-9">
+  <div class="app-inset-text govuk-!-margin-top-6">
     <h2 class="govuk-heading-m">{{directorate.name}}</h2>
     {%- for function in directorate.functions -%}
       <h3 class="govuk-heading-s">
         {{function.name}}
       </h3>
       {%- if function.services.length === 0 -%}
-        <p class="govuk-body">
-          No {{type}} facing services
-        </p>
+        <p class="govuk-body">No critical services.</p>
       {%- else -%}
         <ul class="govuk-list govuk-list--bullet">
           {%- for service in function.services -%}

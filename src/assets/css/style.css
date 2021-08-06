@@ -7037,6 +7037,21 @@ html {
   margin-left: -5px;
 }
 
+.app-label-list {
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.app-label-list li {
+  display: inline;
+}
+
+.app-label-list li .app-tag {
+  margin-top: .2em;
+  margin-bottom: .2em;
+  font-size: .7em;
+}
+
 .app-inset-text {
   border-left: 5px solid #b1b4b6;
   padding-left: 2rem;

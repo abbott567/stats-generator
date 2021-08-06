@@ -1,6 +1,6 @@
 {%- extends '../../common/layouts/default.njk' -%}
 {%- set page_title = 'Services with no plans for compliance' -%}
-{%- set filtersNoPlansForCompliance = true -%}
+{%- set filterNoPlansForCompliance = true -%}
 {%- block content -%}
 
 <h1 class="govuk-heading-xl">
@@ -24,7 +24,13 @@
       {%- else -%}
         <ul class="govuk-list govuk-list--bullet">
           {%- for service in function.services -%}
-          <li>{{service.name}}</li>
+          <li class="govuk-!-margin-bottom-5">
+            {{service.name}}<br />
+            <p class="govuk-visually-hidden">
+              Labels for {{service.name}}:
+            </p>
+            {{- labels(service, {add_classes: 'app-tag'}) -}}
+          </li>
           {%- endfor -%}
         </ul>
       {%- endif -%}

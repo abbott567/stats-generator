@@ -8,6 +8,7 @@ html { font-family: $govuk-font-family }
 // App components
 @import 'src/common/components/progress-bar/sass';
 @import 'src/common/components/nav/sass';
+@import 'src/common/components/labels/sass';
 
 
 .app-inset-text {

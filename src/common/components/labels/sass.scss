@@ -1,0 +1,14 @@
+.app-label-list {
+  margin-top: 0;
+  padding-left: 0;
+
+  li {
+    display: inline;
+
+    .app-tag {
+      margin-top: .2em;
+      margin-bottom: .2em;
+      font-size: .7em;
+    }
+  }
+}

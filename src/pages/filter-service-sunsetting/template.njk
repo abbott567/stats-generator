@@ -1,6 +1,6 @@
 {%- extends '../../common/layouts/default.njk' -%}
 {%- set page_title = 'Sunsetting services' -%}
-{%- set filtersSunsettingActive = true -%}
+{%- set filterSunsettingActive = true -%}
 {%- block content -%}
 
 <h1 class="govuk-heading-xl">
@@ -19,12 +19,18 @@
       </h3>
       {%- if function.services.length === 0 -%}
         <p class="govuk-body">
-          No sunsetting services
+          No sunsetting services.
         </p>
       {%- else -%}
         <ul class="govuk-list govuk-list--bullet">
           {%- for service in function.services -%}
-          <li>{{service.name}}</li>
+          <li class="govuk-!-margin-bottom-5">
+            {{service.name}}<br />
+            <p class="govuk-visually-hidden">
+              Labels for {{service.name}}:
+            </p>
+            {{- labels(service, {add_classes: 'app-tag'}) -}}
+          </li>
           {%- endfor -%}
         </ul>
       {%- endif -%}
