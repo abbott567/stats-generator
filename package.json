@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
-    "date-fns": "^2.19.0",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "govuk-frontend": "^3.11.0",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
+    "date-fns": "^2.23.0 ",
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "govuk-frontend": "^3.13.0",
+    "http-errors": "^1.8.0 ",
+    "morgan": "^1.10.0",
     "nunjucks": "^3.2.3",
     "serve-favicon": "^2.5.0"
   },
@@ -30,7 +30,7 @@
     "gulp-sass": "^5.0.0",
     "gulp-zip": "^5.1.0",
     "htmlmin": "0.0.7",
-    "mocha": "^9.0.2",
+    "mocha": "^9.0.3",
     "node-sass": "^6.0.1"
   }
 }
