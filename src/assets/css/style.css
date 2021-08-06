@@ -7044,11 +7044,12 @@ html {
 
 .app-label-list li {
   display: inline;
+  margin-right: .3rem;
 }
 
 .app-label-list li .app-tag {
-  margin-top: .2em;
-  margin-bottom: .2em;
+  margin-top: .5em;
+  margin-bottom: .5em;
   font-size: .7em;
 }
 
