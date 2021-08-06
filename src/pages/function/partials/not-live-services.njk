@@ -11,15 +11,13 @@
         </h3>
 
         <h4 class="govuk-visually-hidden">
-          Service type for {{service.name}}
+          Labels for {{service.name}}
         </h4>
-        {{ govukTag({
-          text: service.type + ' facing'
-        }) }}
+        {{- labels(service) -}}
 
         <h4 class="govuk-visually-hidden">Notes for {{service.name}}</h4>
         <p>
-          {{service.notes}}
+          {{- service.notes -}}
         </p>
         
         {{ progressBar({
