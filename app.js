@@ -24,11 +24,13 @@ njENV.addFilter('isNaN', num => {
   return false
 })
 
-app.use(
-  logger('dev', {
-    skip: (req, res) => process.env.NODE_ENV === 'build'
-  })
-)
+if (process.env.NODE_ENV === 'dev') {
+  app.use(
+    logger('dev', {
+      skip: (req, res) => process.env.NODE_ENV === 'build'
+    })
+  )
+}
 
 app.use('/', (req, res, next) => {
   res.locals.config = require('./src/config')
