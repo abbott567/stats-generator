@@ -6,7 +6,7 @@
     "start": "gulp",
     "build": "gulp build",
     "export": "gulp export",
-    "test": "mocha tests/test.js",
+    "test": "mocha tests/test.js --timeout 60000 --exit",
     "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
@@ -18,12 +18,15 @@
     "http-errors": "^1.8.0 ",
     "morgan": "^1.10.0",
     "nunjucks": "^3.2.3",
+    "selenium-webdriver": "^4.0.0-beta.4",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "@axe-core/webdriverjs": "^4.2.2",
     "axe-core": "^4.3.2",
     "chai": "^4.3.4",
     "cheerio": "^1.0.0-rc.10",
+    "chromedriver": "^90.0.1",
     "clean-css": "^5.1.5",
     "del": "^6.0.0",
     "exceljs": "^4.2.1",
