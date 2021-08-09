@@ -15,6 +15,7 @@ function createScrapeURLs () {
     })
     nav.push(navItem)
   })
+  return nav
 }
 
 function generateNavigationData (req, res, next) {
