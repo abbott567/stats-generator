@@ -1,6 +1,6 @@
 const gulp = require('gulp')
 const { scrape, saveHTML, overwriteURLs } = require('./helpers')
-const { createScrapeURLs } = require('../../src/utils/generate-navigation.data')
+const { createScrapeURLs } = require('./helpers')
 
 const urls = createScrapeURLs()
 

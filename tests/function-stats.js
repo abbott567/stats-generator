@@ -11,6 +11,7 @@ raw.forEach(directorate => {
     let medRiskCount = 0
     let lowRiskCount = 0
     let compliantCount = 0
+    let criticalCount = 0
     let staffFacingCount = 0
     let citizenFacingCount = 0
 
@@ -31,6 +32,10 @@ raw.forEach(directorate => {
           lowRiskCount++
         } else if (service.risk === 'compliant') {
           compliantCount++
+        }
+
+        if (service.critical) {
+          criticalCount++
         }
       }
     })
@@ -54,6 +59,9 @@ raw.forEach(directorate => {
       it('stats reported for high, medium, low and compliant services should equal total live services', function () {
         const total = data.stats.high_risk + data.stats.medium_risk + data.stats.low_risk + data.stats.compliant_risk
         expect(total).to.equal(liveServicesCount)
+      })
+      it('stats reported for critical services should be correct', function () {
+        expect(data.stats.total_critical).to.equal(criticalCount)
       })
       it('stats reported for number of live citizen facing services should be correct', function () {
         expect(data.stats.total_live_citizen).to.equal(citizenFacingCount)

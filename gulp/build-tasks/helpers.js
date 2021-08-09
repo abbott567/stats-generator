@@ -69,4 +69,24 @@ async function scrape (url) {
   )
 }
 
-module.exports = { saveHTML, scrape, overwriteURLs }
+function createScrapeURLs () {
+  const data = require('../../src/data/data')
+  const nav = []
+  data.forEach(directorate => {
+    const navItem = {
+      name: directorate.link.replace('/', ''),
+      link: directorate.link
+    }
+    navItem.children = []
+    directorate.functions.forEach(_function => {
+      navItem.children.push({
+        name: _function.link.replace('/', ''),
+        link: _function.link
+      })
+    })
+    nav.push(navItem)
+  })
+  return nav
+}
+
+module.exports = { saveHTML, scrape, overwriteURLs, createScrapeURLs }

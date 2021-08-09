@@ -2,6 +2,7 @@ const { getFunctions, getAFunctionsServices, sanitizeRates } = require('./helper
 const { generateStatsForAService } = require('./generate-stats-service')
 const { generateCitizenFacingStats } = require('./generate-stats-citizen')
 const { generateStaffFacingStats } = require('./generate-stats-staff')
+const { generateCriticalStats } = require('./generate-stats-critical')
 const { generateSunSettingStats } = require('./generate-stats-sunsetting')
 const { generatePlannedComplianceStats } = require('./generate-stats-planned-compliance')
 const { generateRisks } = require('../utils/generate-stats-risks')
@@ -38,7 +39,9 @@ function generateStatsForOverview (data) {
     medium_risk: 0,
     low_risk: 0,
     compliant_risk: 0,
+    unknown_risk: 0,
 
+    total_critical: 0,
     total_sunsetting: 0,
     total_descoped: 0,
 
@@ -61,6 +64,7 @@ function generateStatsForOverview (data) {
 
         generateCitizenFacingStats(service, overviewStats)
         generateStaffFacingStats(service, overviewStats)
+        generateCriticalStats(service, overviewStats)
         generateSunSettingStats(service, overviewStats)
         generatePlannedComplianceStats(service, overviewStats)
 

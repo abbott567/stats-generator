@@ -3,6 +3,7 @@ const { generateStatsForServices, generateStatsForAService } = require('./genera
 const { generateCitizenFacingStats } = require('./generate-stats-citizen')
 const { generateStaffFacingStats } = require('./generate-stats-staff')
 const { generateSunSettingStats } = require('./generate-stats-sunsetting')
+const { generateCriticalStats } = require('./generate-stats-critical')
 const { generatePlannedComplianceStats } = require('./generate-stats-planned-compliance')
 const { generateRisks } = require('./generate-stats-risks')
 const {
@@ -47,7 +48,9 @@ function generateStatsForAFunction (_function) {
     medium_risk: 0,
     low_risk: 0,
     compliant_risk: 0,
+    unknown_risk: 0,
 
+    total_critical: 0,
     total_sunsetting: 0,
     total_descoped: 0,
 
@@ -64,6 +67,7 @@ function generateStatsForAFunction (_function) {
     functionStats.total_services += 1
     generateCitizenFacingStats(service, functionStats)
     generateStaffFacingStats(service, functionStats)
+    generateCriticalStats(service, functionStats)
     generateSunSettingStats(service, functionStats)
     generatePlannedComplianceStats(service, functionStats)
     generateRisks(service, functionStats)

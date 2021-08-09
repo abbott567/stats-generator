@@ -15,6 +15,10 @@ function generateRisks (service, stats) {
     stats.compliant_risk += 1
   }
 
+  if (service.risk === 'unknown') {
+    stats.unknown_risk += 1
+  }
+
   return stats
 }
 

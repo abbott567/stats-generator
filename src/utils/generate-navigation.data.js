@@ -1,141 +1,124 @@
-function createScrapeURLs () {
+function generateNavigationData () {
   const data = require('../data/data')
-  const nav = []
-  data.forEach(directorate => {
-    const navItem = {
-      name: directorate.link.replace('/', ''),
-      link: directorate.link
-    }
-    navItem.children = []
-    directorate.functions.forEach(_function => {
-      navItem.children.push({
-        name: _function.link.replace('/', ''),
-        link: _function.link
-      })
-    })
-    nav.push(navItem)
-  })
-  return nav
-}
-
-function generateNavigationData (req, res, next) {
-  const data = require('../data/data')
-  const nav = []
-  nav.push({
-    name: res.locals.config.org_name + ' overview',
-    link: '/',
-    active: req.url === '/',
-    child_active: false
-  })
-  data.forEach(directorate => {
-    const navItem = {
-      name: directorate.name,
-      link: directorate.link,
-      active: directorate.link === req.url,
-      child_active: false
-    }
-    navItem.children = []
-    directorate.functions.forEach(_function => {
-      const active = _function.link === req.url
-      if (active) {
-        navItem.child_active = true
-      }
-      navItem.children.push({
-        name: _function.name,
-        link: _function.link,
-        active
-      })
-    })
-    nav.push(navItem)
-  })
-  res.locals.nav = nav
-  next()
-}
-
-function createTestURLs () {
-  const data = require('../data/data')
-  const nav = []
+  const nav = {
+    main: [],
+    filters: [],
+    support_links: []
+  }
 
   // Overview
-  nav.push({
+  nav.main.push({
     name: 'Overview',
-    link: '/'
+    link: '/',
+    directory: 'src/pages/overview',
+    children: []
   })
 
   // Directorates
   data.forEach(directorate => {
-    const navItem = {
-      name: directorate.link.replace('/', ''),
-      link: directorate.link
+    const parentItem = {
+      name: directorate.name,
+      link: directorate.link,
+      directory: 'src/pages/directorate',
+      children: []
     }
-    nav.push(navItem)
 
     // Functions
     directorate.functions.forEach(_function => {
-      const navItem = {
+      const childItem = {
+        name: _function.name,
         link: _function.link,
-        name: _function.link.replace('/', '')
+        directory: 'src/pages/function'
       }
-      nav.push(navItem)
+      parentItem.children.push(childItem)
     })
+
+    nav.main.push(parentItem)
   })
 
   // Filters
-  nav.push({
+  nav.filters.push({
     name: 'Compliant services',
-    link: '/compliant-services'
+    link: '/compliant-services',
+    directory: 'src/pages/filter-service-compliant',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'High risk services',
-    link: '/high-risk-services'
+    link: '/high-risk-services',
+    directory: 'src/pages/filter-service-risk',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'Medium risk services',
-    link: '/medium-risk-services'
+    link: '/medium-risk-services',
+    directory: 'src/pages/filter-service-risk',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'Low risk services',
-    link: '/low-risk-services'
+    link: '/low-risk-services',
+    directory: 'src/pages/filter-service-risk',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'Unknown risk services',
-    link: '/unknown-risk-services'
+    link: '/unknown-risk-services',
+    directory: 'src/pages/filter-service-risk',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'Citizen facing services',
-    link: '/citizen-facing-services'
+    link: '/citizen-facing-services',
+    directory: 'src/pages/filter-service-type',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'Staff facing services',
-    link: '/staff-facing-services'
+    link: '/staff-facing-services',
+    directory: 'src/pages/filter-service-type',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'Critical services',
-    link: '/critical-services'
+    link: '/critical-services',
+    directory: 'src/pages/filter-service-critical',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'Sunsetting services',
-    link: '/sunsetting-services'
+    link: '/sunsetting-services',
+    directory: 'src/pages/filter-service-sunsetting',
+    children: []
   })
-  nav.push({
+  nav.filters.push({
     name: 'No plans for compliance',
-    link: '/no-plans-for-compliance'
+    link: '/no-plans-for-compliance',
+    directory: 'src/pages/filter-no-plans-for-compliance',
+    children: []
   })
 
   // Support links
-  nav.push({
+  nav.support_links.push({
     name: 'Accessibility statement',
-    link: '/accessibility-statement'
+    link: '/accessibility-statement',
+    directory: 'src/pages/accessibility-statement',
+    children: []
   })
-  nav.push({
+  nav.support_links.push({
     name: 'Next steps for this report',
-    link: '/next-steps-for-this-report'
+    link: '/next-steps-for-this-report',
+    directory: 'src/pages/next-steps-for-this-report',
+    children: []
   })
-  nav.push({
+  nav.support_links.push({
     name: 'Sitemap',
-    link: '/sitemap'
+    link: '/sitemap',
+    directory: 'src/pages/sitemap',
+    children: []
   })
+
   return nav
 }
 
-module.exports = { generateNavigationData, createScrapeURLs, createTestURLs }
+module.exports = { generateNavigationData }

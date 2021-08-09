@@ -9,80 +9,52 @@
 </h1>
 
 <div class="app-inset-text govuk-!-margin-top-9">
-  <h2 class="govuk-heading-m">Navigation</h2>
+  <h2 class="govuk-heading-m">Main navigation</h2>
   <ul class="govuk-list">
-    <li><a class="govuk-link" href="/">DWP Digital overview</a></li>
-    {%- for directorate in data -%}
-      <li><a class="govuk-link" href="{{directorate.link}}">{{directorate.name}}</a></li>
-      <li>
-        <ul>
-          {%- for function in directorate.functions -%}
-            <li><a class="govuk-link" href="{{function.link}}">{{function.name}}</a></li>
-          {%- endfor -%}
-        </ul>
-      </li>
+    {%- for navItem in nav.main -%}
+      <li><a class="govuk-link" href="{{navItem.link}}">{{navItem.name}}</a></li>
+      {% if navItem.children.length > 0 %}
+        <li>
+          <ul>
+            {%- for child in navItem.children -%}
+              <li><a class="govuk-link" href="{{child.link}}">{{child.name}}</a></li>
+            {%- endfor -%}
+          </ul>
+        </li>
+      {% endif %}
     {%- endfor -%}
   </ul>
 
   <h2 class="govuk-heading-m">Filters</h2>
   <ul class="govuk-list">
-    <li>
-      <a class="govuk-link" href="/high-risk-services">
-        High risk services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/medium-risk-services">
-        Medium risk services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/low-risk-services">
-        Low risk services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/unknown-risk-services">
-        Unknown risk services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/compliant-services">
-        Compliant services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/citizen-facing-services">
-        Citizen facing services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/staff-facing-services">
-        Staff facing services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/critical-services">
-        Critical services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/sunsetting-services">
-        Sunsetting services
-      </a>
-    </li>
-    <li>
-      <a class="govuk-link" href="/no-plans-for-compliance">
-        No plans for compliance
-      </a>
-    </li>
+    {%- for navItem in nav.filters -%}
+      <li><a class="govuk-link" href="{{navItem.link}}">{{navItem.name}}</a></li>
+      {% if navItem.children.length > 0 %}
+        <li>
+          <ul>
+            {%- for child in navItem.children -%}
+              <li><a class="govuk-link" href="{{child.link}}">{{child.name}}</a></li>
+            {%- endfor -%}
+          </ul>
+        </li>
+      {% endif %}
+    {%- endfor -%}
   </ul>
 
   <h2 class="govuk-heading-m">Support links</h2>
   <ul class="govuk-list">
-    <li><a class="govuk-link" href="/accessibility-statement">Accessibility statement</a></li>
-    <li><a class="govuk-link" href="/next-steps-for-this-report">Next steps for this report</a></li>
-    <li><a class="govuk-link" href="/sitemap">Sitemap</a></li>
+    {%- for navItem in nav.filters -%}
+      <li><a class="govuk-link" href="{{navItem.link}}">{{navItem.name}}</a></li>
+      {% if navItem.children.length > 0 %}
+        <li>
+          <ul>
+            {%- for child in navItem.children -%}
+              <li><a class="govuk-link" href="{{child.link}}">{{child.name}}</a></li>
+            {%- endfor -%}
+          </ul>
+        </li>
+      {% endif %}
+    {%- endfor -%}
   </ul>
 </div>
 
