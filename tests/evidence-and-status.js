@@ -33,7 +33,7 @@ describe('The evidence provided and the compliance status be correct', function 
           }
 
           if (evidenceCounter === 5) {
-            expect(risk).to.equal('compliant')
+            expect(risk).to.equal('compliant', service.name)
           }
         })
       })
